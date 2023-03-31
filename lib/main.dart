@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:live_reflective_visualizer/visualizer_provider.dart';
+import 'package:music_visualizer/music_visualizer.dart';
 import 'package:provider/provider.dart';
 import 'package:reflective_visual/reflective.dart';
 
@@ -45,38 +46,60 @@ class _MyHomePageState extends State<MyHomePage> {
           return ReflectivePage(
             key: reflectiveKey,
             bgColor: const Color.fromARGB(255, 52, 52, 52),
-            body: Center(
-              child: Selector<VisualizerProvider, double>(
-                  selector: (context, provider) => provider.volume ?? 0,
-                  builder: (context, value, child) {
-                    value = value * 3;
-                    return Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
-                            gradient: RadialGradient(
-                              colors: [
-                                Colors.amber,
-                                Colors.amber.withOpacity(0)
-                              ],
-                              stops: const [-2, 2.5],
-                            ),
-                          ),
-                        ),
-                        AnimatedContainer(
-                          duration: const Duration(milliseconds: 150),
-                          width: 600 - value,
-                          height: 600 - value,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(1000),
-                              color: Colors.amber),
-                        ),
+            body: Column(
+              children: [
+                Expanded(
+                  child: Center(
+                    child: Selector<VisualizerProvider, double>(
+                        selector: (context, provider) => provider.volume ?? 0,
+                        builder: (context, value, child) {
+                          value = value * 3;
+                          return Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(
+                                  gradient: RadialGradient(
+                                    colors: [
+                                      Colors.amber,
+                                      Colors.amber.withOpacity(0)
+                                    ],
+                                    stops: const [-2, 2.5],
+                                  ),
+                                ),
+                              ),
+                              AnimatedContainer(
+                                duration: const Duration(milliseconds: 150),
+                                width: 600 - value,
+                                height: 600 - value,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(1000),
+                                    color: Colors.amber),
+                              ),
+                            ],
+                          );
+                        }),
+                  ),
+                ),
+                SizedBox(
+                  height: 60,
+                  child: Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: MusicVisualizer(
+                      barCount: 30,
+                      colors: [
+                        Colors.red[900]!,
+                        Colors.green[900]!,
+                        Colors.blue[900]!,
+                        Colors.brown[900]!
                       ],
-                    );
-                  }),
+                      duration: const [900, 700, 600, 800, 500],
+                    ),
+                  ),
+                ),
+              ],
             ),
           );
         });

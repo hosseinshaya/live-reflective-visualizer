@@ -33,6 +33,7 @@ dependencies:
   mic_stream: ^0.6.4
   provider: ^6.0.5
   reflective_visual: ^0.0.21
+  music_visualizer: ^1.0.2
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -192,6 +192,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.6.4"
+  music_visualizer:
+    dependency: "direct main"
+    description:
+      name: music_visualizer
+      sha256: "70907e9b4edd6c5ebb2249d8ffa5f9177b8c86ca5525adc11bbd2ff16f0caaab"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.2"
   nested:
     dependency: transitive
     description:
